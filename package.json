@@ -1,0 +1,14 @@
+{
+  "name": "mundial-2026",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Página de fãs sobre o Mundial de Futebol 2026",
+  "scripts": {
+    "build": "tailwindcss -i ./src/styles.css -o ./assets/styles.css --minify",
+    "dev": "tailwindcss -i ./src/styles.css -o ./assets/styles.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
+}

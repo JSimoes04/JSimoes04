@@ -5,31 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seleções · Mundial 2026</title>
     <meta name="description" content="As 48 seleções do Mundial 2026: confederação, títulos mundiais e melhor resultado de sempre.">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        display: ['Archivo', 'Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        ink: { DEFAULT: '#0b0d12', 800: '#141821', 700: '#1d2230', 600: '#2a3142' },
-                        accent: { DEFAULT: '#d4ff3a', dark: '#b8e01f' },
-                    }
-                }
-            }
-        }
-    </script>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body class="font-sans bg-white text-ink antialiased">
 
     <!-- Navegação -->
-    <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
+    <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur-sm border-b border-white/10">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Principal">
             <div class="flex items-center justify-between h-16 md:h-20">
                 <a href="index.html" class="flex items-center gap-2 text-white">
@@ -80,7 +64,7 @@
                     <label class="relative block lg:w-72">
                         <span class="sr-only">Procurar seleção</span>
                         <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
-                        <input id="pesquisa" type="search" placeholder="Procurar seleção…" class="w-full rounded-full border border-gray-200 pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink">
+                        <input id="pesquisa" type="search" placeholder="Procurar seleção…" class="w-full rounded-full border border-gray-200 pl-10 pr-4 py-2.5 text-sm focus:outline-hidden focus:ring-2 focus:ring-ink/20 focus:border-ink">
                     </label>
                 </div>
 
@@ -214,7 +198,7 @@
                     <div class="flex items-start justify-between gap-3">
                         <img src="https://flagcdn.com/w80/${s.codigo}.png" srcset="https://flagcdn.com/w160/${s.codigo}.png 2x"
                              alt="Bandeira: ${s.nome}" loading="lazy"
-                             class="h-9 w-auto rounded shadow-sm ring-1 ring-black/5">
+                             class="h-9 w-auto rounded-sm shadow-xs ring-1 ring-black/5">
                         <div class="flex flex-wrap justify-end gap-1">${etiquetas}</div>
                     </div>
                     <h3 class="mt-5 font-display font-extrabold text-xl tracking-tight">${s.nome}</h3>
