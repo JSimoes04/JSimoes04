@@ -3,220 +3,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mundial de Futebol 2026 - A Maior Edição de Sempre</title>
+    <title>Mundial 2026 · Canadá, México e EUA</title>
+    <meta name="description" content="Tudo sobre o Mundial de Futebol 2026: o novo formato com 48 seleções, 104 jogos e 16 cidades anfitriãs no Canadá, México e Estados Unidos.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Montserrat', 'sans-serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Archivo', 'Inter', 'sans-serif'],
                     },
                     colors: {
-                        cup: {
-                            neon: '#e0ff00',
-                            purple: '#4f1a9a',
-                            dark: '#111111'
-                        }
+                        ink: { DEFAULT: '#0b0d12', 800: '#141821', 700: '#1d2230', 600: '#2a3142' },
+                        accent: { DEFAULT: '#d4ff3a', dark: '#b8e01f' },
+                        usa: '#3b82f6',
+                        mex: '#10b981',
+                        can: '#ef4444',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom styles for sporty background overlay */
-        .hero-pattern {
-            background-image: linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.9)), url('https://placehold.co/1920x1080/111111/4f1a9a?text=Estadio+Mundial');
-            background-size: cover;
-            background-position: center;
+        .pitch-lines {
+            background-image:
+                radial-gradient(circle at 50% 50%, transparent 119px, rgba(255,255,255,.06) 120px, rgba(255,255,255,.06) 121px, transparent 122px),
+                linear-gradient(90deg, transparent calc(50% - 1px), rgba(255,255,255,.06) calc(50% - 1px), rgba(255,255,255,.06) calc(50% + 1px), transparent calc(50% + 1px)),
+                radial-gradient(ellipse 80% 60% at 70% 40%, rgba(212,255,58,.12), transparent 60%),
+                radial-gradient(ellipse 60% 50% at 10% 90%, rgba(59,130,246,.12), transparent 60%);
         }
+        .grain::after {
+            content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .04;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+        .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+        .reveal.is-visible { opacity: 1; transform: none; }
+        @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } }
     </style>
 </head>
-<body class="font-sans bg-gray-50 text-gray-900 antialiased">
+<body class="font-sans bg-white text-ink antialiased">
 
-    <nav class="fixed w-full z-50 bg-cup-dark/95 backdrop-blur-sm border-b border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0">
-                    <span class="text-white font-black text-2xl tracking-tighter uppercase">
-                        Mundial <span class="text-cup-neon">26</span>
-                    </span>
+    <!-- Navegação -->
+    <header id="topo" class="fixed inset-x-0 top-0 z-50 transition-colors duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Principal">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="#inicio" class="flex items-center gap-2 text-white">
+                    <span class="grid place-items-center w-9 h-9 rounded-lg bg-accent text-ink font-display font-black text-sm">26</span>
+                    <span class="font-display font-extrabold tracking-tight text-lg">Mundial 2026</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="#formato" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">Formato</a>
+                    <a href="#fases" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">Fases</a>
+                    <a href="#cidades" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">Cidades</a>
+                    <a href="#cidades" class="ml-4 px-5 py-2.5 rounded-full bg-white text-ink text-sm font-semibold hover:bg-accent transition-colors">Ver estádios</a>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#inicio" class="text-white hover:text-cup-neon px-3 py-2 rounded-md text-sm font-bold uppercase transition-colors">Início</a>
-                        <a href="#formato" class="text-gray-300 hover:text-cup-neon px-3 py-2 rounded-md text-sm font-bold uppercase transition-colors">Novo Formato</a>
-                        <a href="#cidades" class="text-gray-300 hover:text-cup-neon px-3 py-2 rounded-md text-sm font-bold uppercase transition-colors">Cidades Anfitriãs</a>
-                    </div>
-                </div>
-                <!-- Mobile menu button -->
-                <div class="-mr-2 flex md:hidden">
-                    <button type="button" class="bg-cup-dark inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none">
-                        <span class="sr-only">Abrir menu principal</span>
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
-                    </button>
-                </div>
+                <button id="menu-btn" type="button" class="md:hidden p-2 -mr-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10" aria-controls="menu-mobile" aria-expanded="false">
+                    <span class="sr-only">Abrir menu</span>
+                    <svg id="icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+                    <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="menu-mobile" class="md:hidden hidden border-t border-white/10 bg-ink/95 backdrop-blur">
+            <div class="px-4 py-4 flex flex-col gap-1">
+                <a href="#formato" class="px-3 py-3 rounded-lg text-gray-200 hover:bg-white/5">Formato</a>
+                <a href="#fases" class="px-3 py-3 rounded-lg text-gray-200 hover:bg-white/5">Fases</a>
+                <a href="#cidades" class="px-3 py-3 rounded-lg text-gray-200 hover:bg-white/5">Cidades</a>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <section id="inicio" class="hero-pattern min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-center md:text-left">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div>
-                    <span class="inline-block py-1 px-3 rounded-full bg-cup-purple text-white text-sm font-bold tracking-wider uppercase mb-4">
-                        O Maior Evento Desportivo
-                    </span>
-                    <h1 class="text-5xl md:text-7xl font-black text-white leading-tight uppercase tracking-tighter mb-6">
-                        Mundial de <br />
-                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-cup-neon to-green-400">Futebol 2026</span>
+    <main>
+        <!-- Hero -->
+        <section id="inicio" class="relative grain overflow-hidden bg-ink text-white pitch-lines">
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-36 pb-20 md:pt-44 md:pb-28">
+                <div class="max-w-3xl">
+                    <p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium text-gray-300">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        11 de junho – 19 de julho de 2026
+                    </p>
+                    <h1 class="mt-6 font-display font-black text-5xl sm:text-6xl lg:text-7xl leading-[1.02] tracking-tight">
+                        Três países.<br>
+                        Um só <span class="text-accent">Mundial.</span>
                     </h1>
-                    <p class="mt-4 text-xl text-gray-300 max-w-2xl font-light leading-relaxed mb-8">
-                        A magia do desporto rei viaja para a América do Norte. Pela primeira vez na história, <strong>Estados Unidos da América</strong>, <strong>Canadá</strong> e <strong>México</strong> unem-se para sediar uma edição épica e sem precedentes.
+                    <p class="mt-6 text-lg md:text-xl text-gray-300 leading-relaxed max-w-2xl">
+                        Pela primeira vez na história, o Campeonato do Mundo é organizado em conjunto por
+                        <strong class="text-white font-semibold">Canadá</strong>,
+                        <strong class="text-white font-semibold">México</strong> e
+                        <strong class="text-white font-semibold">Estados Unidos</strong> — a maior edição de sempre.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="#formato" class="bg-cup-neon text-cup-dark font-black px-8 py-4 rounded-full hover:bg-white hover:scale-105 transition-all uppercase tracking-wide text-center">
-                            Descobrir o Formato
+                    <div class="mt-10 flex flex-col sm:flex-row gap-3">
+                        <a href="#formato" class="inline-flex justify-center items-center gap-2 px-7 py-3.5 rounded-full bg-accent text-ink font-semibold hover:bg-white transition-colors">
+                            Conhecer o formato
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></svg>
                         </a>
-                        <a href="#cidades" class="bg-transparent border-2 border-white text-white font-bold px-8 py-4 rounded-full hover:bg-white hover:text-cup-dark transition-all uppercase tracking-wide text-center">
-                            Ver Cidades
+                        <a href="#cidades" class="inline-flex justify-center items-center px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold hover:bg-white/10 transition-colors">
+                            Cidades anfitriãs
                         </a>
                     </div>
                 </div>
-                <div class="hidden md:flex justify-center relative">
-                    <!-- Decorative Graphic -->
-                    <div class="w-72 h-72 bg-gradient-to-br from-cup-neon to-green-500 rounded-full blur-3xl opacity-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    <img src="https://placehold.co/500x500/transparent/ffffff?text=Bola+de+Futebol" alt="Bola de Futebol" class="relative z-10 w-full max-w-md animate-[bounce_3s_ease-in-out_infinite]">
-                </div>
+
+                <!-- Números-chave -->
+                <dl class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/10 bg-white/10">
+                    <div class="bg-ink/80 backdrop-blur p-6">
+                        <dt class="text-sm text-gray-400">Seleções</dt>
+                        <dd class="mt-1 font-display font-black text-4xl">48</dd>
+                    </div>
+                    <div class="bg-ink/80 backdrop-blur p-6">
+                        <dt class="text-sm text-gray-400">Jogos</dt>
+                        <dd class="mt-1 font-display font-black text-4xl">104</dd>
+                    </div>
+                    <div class="bg-ink/80 backdrop-blur p-6">
+                        <dt class="text-sm text-gray-400">Cidades</dt>
+                        <dd class="mt-1 font-display font-black text-4xl">16</dd>
+                    </div>
+                    <div class="bg-ink/80 backdrop-blur p-6">
+                        <dt class="text-sm text-gray-400">Dias de competição</dt>
+                        <dd class="mt-1 font-display font-black text-4xl">39</dd>
+                    </div>
+                </dl>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="formato" class="py-24 bg-white relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-black text-cup-dark uppercase tracking-tighter mb-4">Um Novo <span class="text-cup-purple">Formato</span></h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">O Mundial 2026 marca o início de uma nova era. Mais equipas, mais jogos e uma celebração global expandida como nunca antes vista.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow text-center group">
-                    <div class="w-20 h-20 bg-cup-dark text-cup-neon rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:rotate-12 transition-transform">
-                        <span class="text-4xl font-black">48</span>
+        <!-- Formato -->
+        <section id="formato" class="py-24 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-12 gap-12">
+                    <div class="lg:col-span-5 reveal">
+                        <p class="text-sm font-semibold uppercase tracking-widest text-gray-500">O novo formato</p>
+                        <h2 class="mt-3 font-display font-black text-4xl md:text-5xl tracking-tight leading-tight">
+                            Mais seleções, mais jogos, mais futebol.
+                        </h2>
+                        <p class="mt-6 text-lg text-gray-600 leading-relaxed">
+                            O Mundial 2026 inaugura uma nova era. O torneio cresce de 32 para 48 seleções e passa a ter
+                            uma ronda eliminatória adicional, abrindo a porta a países que nunca viveram o sonho mundialista.
+                        </p>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3 uppercase tracking-tight">Equipas</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Uma expansão histórica de 32 para 48 seleções nacionais, dando oportunidade a mais países de viverem o sonho mundialista.
-                    </p>
-                </div>
 
-                <!-- Card 2 -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow text-center group">
-                    <div class="w-20 h-20 bg-cup-purple text-white rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:-rotate-12 transition-transform">
-                        <span class="text-4xl font-black">104</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3 uppercase tracking-tight">Jogos no Total</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        O torneio contará com uns impressionantes 104 jogos em 39 dias de pura emoção, culminando numa final inesquecível.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100 shadow-lg hover:shadow-xl transition-shadow text-center group">
-                    <div class="w-20 h-20 bg-cup-neon text-cup-dark rounded-2xl flex items-center justify-center mx-auto mb-6 transform group-hover:scale-110 transition-transform">
-                        <span class="text-4xl font-black">3</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-3 uppercase tracking-tight">Países Sede</h3>
-                    <p class="text-gray-600 leading-relaxed">
-                        Um torneio continental inédito abrangendo o Canadá, México e os Estados Unidos, unindo a América do Norte pelo futebol.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="cidades" class="py-24 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-                <div class="max-w-2xl">
-                    <h2 class="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter mb-4">Cidades <span class="text-cup-neon">Anfitriãs</span></h2>
-                    <p class="text-lg text-gray-400">16 cidades vibrantes foram escolhidas para receber os adeptos de todo o mundo. Conheça alguns dos principais palcos.</p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- City 1 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer">
-                    <img src="https://placehold.co/600x800/222222/ffffff?text=Nova+Iorque" alt="Nova Iorque / Nova Jérsia" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-xs font-bold text-cup-neon uppercase tracking-wider mb-1 block">EUA</span>
-                        <h3 class="text-2xl font-bold text-white uppercase">Nova Iorque <br><span class="text-lg text-gray-300">Nova Jérsia</span></h3>
-                        <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Palco da Grande Final.</p>
-                    </div>
-                </div>
-
-                <!-- City 2 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer">
-                    <img src="https://placehold.co/600x800/222222/ffffff?text=Cidade+do+Mexico" alt="Cidade do México" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-xs font-bold text-green-400 uppercase tracking-wider mb-1 block">México</span>
-                        <h3 class="text-2xl font-bold text-white uppercase">Cidade do<br>México</h3>
-                        <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">O mítico Estádio Azteca.</p>
-                    </div>
-                </div>
-
-                <!-- City 3 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer">
-                    <img src="https://placehold.co/600x800/222222/ffffff?text=Toronto" alt="Toronto" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-xs font-bold text-red-500 uppercase tracking-wider mb-1 block">Canadá</span>
-                        <h3 class="text-2xl font-bold text-white uppercase">Toronto</h3>
-                        <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">Futebol no grande norte.</p>
-                    </div>
-                </div>
-
-                <!-- City 4 -->
-                <div class="group relative overflow-hidden rounded-2xl aspect-[4/5] cursor-pointer">
-                    <img src="https://placehold.co/600x800/222222/ffffff?text=Los+Angeles" alt="Los Angeles" class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
-                    <div class="absolute bottom-0 left-0 p-6">
-                        <span class="text-xs font-bold text-cup-neon uppercase tracking-wider mb-1 block">EUA</span>
-                        <h3 class="text-2xl font-bold text-white uppercase">Los Angeles</h3>
-                        <p class="text-sm text-gray-300 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">O glamour de Hollywood.</p>
+                    <div class="lg:col-span-7 grid sm:grid-cols-2 gap-5">
+                        <article class="reveal rounded-2xl border border-gray-200 p-7 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/60 transition">
+                            <div class="w-11 h-11 rounded-xl bg-ink text-accent grid place-items-center">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a4 4 0 00-5-3.9M9 20H2v-2a4 4 0 015-3.9m10-4.1a3 3 0 11-6 0 3 3 0 016 0zM7 10a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                            </div>
+                            <h3 class="mt-5 font-semibold text-lg">48 seleções</h3>
+                            <p class="mt-2 text-gray-600 leading-relaxed">Mais 16 equipas do que em edições anteriores, com mais vagas para todas as confederações.</p>
+                        </article>
+                        <article class="reveal rounded-2xl border border-gray-200 p-7 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/60 transition">
+                            <div class="w-11 h-11 rounded-xl bg-ink text-accent grid place-items-center">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/></svg>
+                            </div>
+                            <h3 class="mt-5 font-semibold text-lg">12 grupos de 4</h3>
+                            <p class="mt-2 text-gray-600 leading-relaxed">Os dois primeiros de cada grupo e os oito melhores terceiros seguem em frente.</p>
+                        </article>
+                        <article class="reveal rounded-2xl border border-gray-200 p-7 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/60 transition">
+                            <div class="w-11 h-11 rounded-xl bg-ink text-accent grid place-items-center">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" d="M12 7v5l3 2"/></svg>
+                            </div>
+                            <h3 class="mt-5 font-semibold text-lg">104 jogos em 39 dias</h3>
+                            <p class="mt-2 text-gray-600 leading-relaxed">Quase o dobro dos 64 jogos das edições com 32 seleções.</p>
+                        </article>
+                        <article class="reveal rounded-2xl border border-gray-200 p-7 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/60 transition">
+                            <div class="w-11 h-11 rounded-xl bg-ink text-accent grid place-items-center">
+                                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12a9 9 0 1018 0 9 9 0 00-18 0zm0 0h18M12 3c2.5 2.5 3.8 5.5 3.8 9S14.5 18.5 12 21c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/></svg>
+                            </div>
+                            <h3 class="mt-5 font-semibold text-lg">3 países anfitriões</h3>
+                            <p class="mt-2 text-gray-600 leading-relaxed">O primeiro Mundial organizado por três nações, unindo a América do Norte.</p>
+                        </article>
                     </div>
                 </div>
             </div>
-            
-            <div class="mt-12 text-center">
-                <p class="text-gray-400 mb-4">E ainda: Atlanta, Boston, Dallas, Houston, Kansas City, Miami, Filadélfia, São Francisco, Seattle, Guadalajara, Monterrey e Vancouver.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <footer class="bg-black text-gray-400 py-12 border-t border-gray-800 text-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h4 class="text-white text-2xl font-black uppercase tracking-tighter mb-6">Mundial <span class="text-cup-neon">26</span></h4>
-            <p class="mb-6 font-light text-sm max-w-md mx-auto">
-                Preparados para o maior espetáculo desportivo do planeta na América do Norte.
-            </p>
-            <div class="flex justify-center space-x-6 mb-8">
-                <!-- Social placeholders -->
-                <a href="#" class="text-gray-500 hover:text-white transition-colors">Facebook</a>
-                <a href="#" class="text-gray-500 hover:text-white transition-colors">Twitter</a>
-                <a href="#" class="text-gray-500 hover:text-white transition-colors">Instagram</a>
+        <!-- Fases -->
+        <section id="fases" class="py-24 md:py-32 bg-gray-50 border-y border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-2xl reveal">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-gray-500">Caminho até à final</p>
+                    <h2 class="mt-3 font-display font-black text-4xl md:text-5xl tracking-tight">As fases do torneio</h2>
+                </div>
+
+                <ol class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+                    <li class="reveal rounded-2xl bg-white border border-gray-200 p-6">
+                        <span class="text-xs font-semibold text-gray-400">01</span>
+                        <h3 class="mt-2 font-semibold">Fase de grupos</h3>
+                        <p class="mt-1 text-sm text-gray-500">72 jogos · 48 seleções</p>
+                    </li>
+                    <li class="reveal rounded-2xl bg-white border border-gray-200 p-6">
+                        <span class="text-xs font-semibold text-gray-400">02</span>
+                        <h3 class="mt-2 font-semibold">16 avos de final</h3>
+                        <p class="mt-1 text-sm text-gray-500">16 jogos · nova ronda</p>
+                    </li>
+                    <li class="reveal rounded-2xl bg-white border border-gray-200 p-6">
+                        <span class="text-xs font-semibold text-gray-400">03</span>
+                        <h3 class="mt-2 font-semibold">Oitavos de final</h3>
+                        <p class="mt-1 text-sm text-gray-500">8 jogos</p>
+                    </li>
+                    <li class="reveal rounded-2xl bg-white border border-gray-200 p-6">
+                        <span class="text-xs font-semibold text-gray-400">04</span>
+                        <h3 class="mt-2 font-semibold">Quartos de final</h3>
+                        <p class="mt-1 text-sm text-gray-500">4 jogos</p>
+                    </li>
+                    <li class="reveal rounded-2xl bg-white border border-gray-200 p-6">
+                        <span class="text-xs font-semibold text-gray-400">05</span>
+                        <h3 class="mt-2 font-semibold">Meias-finais</h3>
+                        <p class="mt-1 text-sm text-gray-500">2 jogos + 3.º lugar</p>
+                    </li>
+                    <li class="reveal rounded-2xl bg-ink text-white p-6">
+                        <span class="text-xs font-semibold text-accent">06</span>
+                        <h3 class="mt-2 font-semibold">Final</h3>
+                        <p class="mt-1 text-sm text-gray-400">19 jul · MetLife Stadium</p>
+                    </li>
+                </ol>
             </div>
-            <p class="text-xs text-gray-600">
-                &copy; 2026 Página de Fãs do Mundial. Não afiliado à FIFA. Desenhado para fins educacionais.
-            </p>
+        </section>
+
+        <!-- Cidades -->
+        <section id="cidades" class="py-24 md:py-32">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 reveal">
+                    <div class="max-w-2xl">
+                        <p class="text-sm font-semibold uppercase tracking-widest text-gray-500">Cidades anfitriãs</p>
+                        <h2 class="mt-3 font-display font-black text-4xl md:text-5xl tracking-tight">16 cidades, 16 estádios</h2>
+                        <p class="mt-4 text-lg text-gray-600">Onze cidades nos Estados Unidos, três no México e duas no Canadá recebem os adeptos de todo o mundo.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrar por país">
+                        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition" data-filter="all" aria-selected="true">Todas</button>
+                        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition" data-filter="usa" aria-selected="false">EUA</button>
+                        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition" data-filter="mex" aria-selected="false">México</button>
+                        <button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition" data-filter="can" aria-selected="false">Canadá</button>
+                    </div>
+                </div>
+
+                <ul id="lista-cidades" class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4"></ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-ink text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+                <div>
+                    <a href="#inicio" class="flex items-center gap-2 text-white">
+                        <span class="grid place-items-center w-9 h-9 rounded-lg bg-accent text-ink font-display font-black text-sm">26</span>
+                        <span class="font-display font-extrabold tracking-tight text-lg">Mundial 2026</span>
+                    </a>
+                    <p class="mt-4 text-sm max-w-sm">O maior espetáculo desportivo do planeta, na América do Norte.</p>
+                </div>
+                <nav class="flex gap-6 text-sm" aria-label="Rodapé">
+                    <a href="#formato" class="hover:text-white transition-colors">Formato</a>
+                    <a href="#fases" class="hover:text-white transition-colors">Fases</a>
+                    <a href="#cidades" class="hover:text-white transition-colors">Cidades</a>
+                </nav>
+            </div>
+            <div class="mt-10 pt-6 border-t border-white/10 text-xs text-gray-500">
+                Página de fãs criada para fins educacionais. Não afiliada à FIFA.
+            </div>
         </div>
     </footer>
 
+    <script>
+        // Cidades e estádios
+        const cidades = [
+            { cidade: 'Nova Iorque / Nova Jérsia', estadio: 'MetLife Stadium', pais: 'usa', destaque: 'Final' },
+            { cidade: 'Cidade do México', estadio: 'Estádio Azteca', pais: 'mex', destaque: 'Jogo inaugural' },
+            { cidade: 'Toronto', estadio: 'BMO Field', pais: 'can', destaque: 'Estreia do Canadá' },
+            { cidade: 'Los Angeles', estadio: 'SoFi Stadium', pais: 'usa', destaque: 'Estreia dos EUA' },
+            { cidade: 'Dallas', estadio: 'AT&T Stadium', pais: 'usa' },
+            { cidade: 'Atlanta', estadio: 'Mercedes-Benz Stadium', pais: 'usa' },
+            { cidade: 'Miami', estadio: 'Hard Rock Stadium', pais: 'usa' },
+            { cidade: 'Vancouver', estadio: 'BC Place', pais: 'can' },
+            { cidade: 'Guadalajara', estadio: 'Estádio Akron', pais: 'mex' },
+            { cidade: 'Monterrey', estadio: 'Estádio BBVA', pais: 'mex' },
+            { cidade: 'Boston', estadio: 'Gillette Stadium', pais: 'usa' },
+            { cidade: 'Filadélfia', estadio: 'Lincoln Financial Field', pais: 'usa' },
+            { cidade: 'Houston', estadio: 'NRG Stadium', pais: 'usa' },
+            { cidade: 'Kansas City', estadio: 'Arrowhead Stadium', pais: 'usa' },
+            { cidade: 'São Francisco', estadio: "Levi's Stadium", pais: 'usa' },
+            { cidade: 'Seattle', estadio: 'Lumen Field', pais: 'usa' },
+        ];
+        const paises = {
+            usa: { nome: 'EUA', cor: 'bg-usa' },
+            mex: { nome: 'México', cor: 'bg-mex' },
+            can: { nome: 'Canadá', cor: 'bg-can' },
+        };
+
+        const lista = document.getElementById('lista-cidades');
+        lista.innerHTML = cidades.map(c => `
+            <li data-pais="${c.pais}" class="cidade group relative rounded-2xl border border-gray-200 p-6 hover:border-ink transition-colors">
+                <div class="flex items-center justify-between">
+                    <span class="inline-flex items-center gap-2 text-xs font-semibold text-gray-500">
+                        <span class="w-2 h-2 rounded-full ${paises[c.pais].cor}"></span>${paises[c.pais].nome}
+                    </span>
+                    ${c.destaque ? `<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-accent text-ink">${c.destaque}</span>` : ''}
+                </div>
+                <h3 class="mt-6 font-display font-extrabold text-xl tracking-tight">${c.cidade}</h3>
+                <p class="mt-1 text-sm text-gray-500">${c.estadio}</p>
+            </li>
+        `).join('');
+
+        // Filtros por país
+        const botoes = document.querySelectorAll('.filter-btn');
+        function aplicarFiltro(filtro) {
+            botoes.forEach(b => {
+                const ativo = b.dataset.filter === filtro;
+                b.setAttribute('aria-selected', ativo);
+                b.className = 'filter-btn px-4 py-2 rounded-full text-sm font-medium border transition ' +
+                    (ativo ? 'bg-ink text-white border-ink' : 'bg-white text-gray-700 border-gray-200 hover:border-gray-400');
+            });
+            document.querySelectorAll('.cidade').forEach(el => {
+                el.hidden = filtro !== 'all' && el.dataset.pais !== filtro;
+            });
+        }
+        botoes.forEach(b => b.addEventListener('click', () => aplicarFiltro(b.dataset.filter)));
+        aplicarFiltro('all');
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu-mobile');
+        function toggleMenu(abrir) {
+            menu.classList.toggle('hidden', !abrir);
+            menuBtn.setAttribute('aria-expanded', abrir);
+            document.getElementById('icon-open').classList.toggle('hidden', abrir);
+            document.getElementById('icon-close').classList.toggle('hidden', !abrir);
+        }
+        menuBtn.addEventListener('click', () => toggleMenu(menu.classList.contains('hidden')));
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+        // Fundo da navegação ao fazer scroll
+        const topo = document.getElementById('topo');
+        function atualizarNav() {
+            const scrolled = window.scrollY > 20;
+            topo.classList.toggle('bg-ink/90', scrolled);
+            topo.classList.toggle('backdrop-blur', scrolled);
+            topo.classList.toggle('border-b', scrolled);
+            topo.classList.toggle('border-white/10', scrolled);
+        }
+        window.addEventListener('scroll', atualizarNav, { passive: true });
+        atualizarNav();
+
+        // Animação de entrada
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
