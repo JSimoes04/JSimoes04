@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-PT" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleções · Mundial 2026</title>
+    <meta name="description" content="As 48 seleções do Mundial 2026: confederação, títulos mundiais e melhor resultado de sempre.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Archivo', 'Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        ink: { DEFAULT: '#0b0d12', 800: '#141821', 700: '#1d2230', 600: '#2a3142' },
+                        accent: { DEFAULT: '#d4ff3a', dark: '#b8e01f' },
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans bg-white text-ink antialiased">
+
+    <!-- Navegação -->
+    <header class="sticky top-0 z-50 bg-ink/95 backdrop-blur border-b border-white/10">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Principal">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <a href="index.html" class="flex items-center gap-2 text-white">
+                    <span class="grid place-items-center w-9 h-9 rounded-lg bg-accent text-ink font-display font-black text-sm">26</span>
+                    <span class="font-display font-extrabold tracking-tight text-lg">Mundial 2026</span>
+                </a>
+                <div class="hidden md:flex items-center gap-1">
+                    <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">Início</a>
+                    <a href="historia.html" class="px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-colors">Finais históricas</a>
+                    <a href="selecoes.html" class="px-4 py-2 text-sm font-medium text-white" aria-current="page">Seleções</a>
+                </div>
+                <button id="menu-btn" type="button" class="md:hidden p-2 -mr-2 rounded-lg text-gray-300 hover:text-white hover:bg-white/10" aria-controls="menu-mobile" aria-expanded="false">
+                    <span class="sr-only">Abrir menu</span>
+                    <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="menu-mobile" class="md:hidden hidden border-t border-white/10">
+            <div class="px-4 py-4 flex flex-col gap-1">
+                <a href="index.html" class="px-3 py-3 rounded-lg text-gray-200 hover:bg-white/5">Início</a>
+                <a href="historia.html" class="px-3 py-3 rounded-lg text-gray-200 hover:bg-white/5">Finais históricas</a>
+                <a href="selecoes.html" class="px-3 py-3 rounded-lg text-white bg-white/5">Seleções</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Cabeçalho -->
+        <section class="bg-ink text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+                <p class="text-sm font-semibold uppercase tracking-widest text-gray-400">Mundial 2026</p>
+                <h1 class="mt-3 font-display font-black text-5xl md:text-6xl tracking-tight leading-tight">
+                    As <span class="text-accent">48 seleções</span>
+                </h1>
+                <p class="mt-6 text-lg text-gray-300 max-w-2xl leading-relaxed">
+                    Dos campeões do mundo às estreantes: todas as equipas presentes no primeiro Mundial com 48 seleções,
+                    com a confederação, os títulos e o melhor resultado de cada uma.
+                </p>
+                <dl id="resumo" class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-px rounded-2xl overflow-hidden border border-white/10 bg-white/10"></dl>
+            </div>
+        </section>
+
+        <!-- Lista -->
+        <section class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+                    <div id="filtros" class="flex flex-wrap gap-2" role="tablist" aria-label="Filtrar por confederação"></div>
+                    <label class="relative block lg:w-72">
+                        <span class="sr-only">Procurar seleção</span>
+                        <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M20 20l-3.5-3.5"/></svg>
+                        <input id="pesquisa" type="search" placeholder="Procurar seleção…" class="w-full rounded-full border border-gray-200 pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink">
+                    </label>
+                </div>
+
+                <p id="contagem" class="mt-6 text-sm text-gray-500"></p>
+                <ul id="lista-selecoes" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"></ul>
+                <p id="sem-resultados" class="hidden mt-10 text-center text-gray-500">Nenhuma seleção encontrada.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-ink text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4 text-sm">
+            <nav class="flex gap-6" aria-label="Rodapé">
+                <a href="index.html" class="hover:text-white transition-colors">Início</a>
+                <a href="historia.html" class="hover:text-white transition-colors">Finais históricas</a>
+                <a href="selecoes.html" class="hover:text-white transition-colors">Seleções</a>
+            </nav>
+            <p class="text-xs text-gray-500">Página de fãs criada para fins educacionais. Não afiliada à FIFA.</p>
+        </div>
+    </footer>
+
+    <script>
+        const confederacoes = {
+            UEFA: 'Europa',
+            CONMEBOL: 'América do Sul',
+            CONCACAF: 'América do Norte, Central e Caraíbas',
+            CAF: 'África',
+            AFC: 'Ásia',
+            OFC: 'Oceânia',
+        };
+
+        // codigo = código ISO usado para a bandeira (flagcdn.com)
+        // titulos = anos dos títulos mundiais; melhor = melhor resultado antes de 2026
+        const selecoes = [
+            // UEFA
+            { nome: 'Alemanha', codigo: 'de', conf: 'UEFA', titulos: [1954, 1974, 1990, 2014] },
+            { nome: 'Áustria', codigo: 'at', conf: 'UEFA', melhor: '3.º lugar (1954)' },
+            { nome: 'Bélgica', codigo: 'be', conf: 'UEFA', melhor: '3.º lugar (2018)' },
+            { nome: 'Bósnia e Herzegovina', codigo: 'ba', conf: 'UEFA', melhor: 'Fase de grupos (2014)' },
+            { nome: 'Chéquia', codigo: 'cz', conf: 'UEFA', melhor: 'Finalista (1934, 1962, como Checoslováquia)' },
+            { nome: 'Croácia', codigo: 'hr', conf: 'UEFA', melhor: 'Finalista (2018)' },
+            { nome: 'Escócia', codigo: 'gb-sct', conf: 'UEFA', melhor: 'Fase de grupos' },
+            { nome: 'Espanha', codigo: 'es', conf: 'UEFA', titulos: [2010] },
+            { nome: 'França', codigo: 'fr', conf: 'UEFA', titulos: [1998, 2018] },
+            { nome: 'Inglaterra', codigo: 'gb-eng', conf: 'UEFA', titulos: [1966] },
+            { nome: 'Noruega', codigo: 'no', conf: 'UEFA', melhor: 'Oitavos de final (1998)' },
+            { nome: 'Países Baixos', codigo: 'nl', conf: 'UEFA', melhor: 'Finalista (1974, 1978, 2010)' },
+            { nome: 'Portugal', codigo: 'pt', conf: 'UEFA', melhor: '3.º lugar (1966)' },
+            { nome: 'Suécia', codigo: 'se', conf: 'UEFA', melhor: 'Finalista (1958)' },
+            { nome: 'Suíça', codigo: 'ch', conf: 'UEFA', melhor: 'Quartos de final (1934, 1938, 1954)' },
+            { nome: 'Turquia', codigo: 'tr', conf: 'UEFA', melhor: '3.º lugar (2002)' },
+            // CONMEBOL
+            { nome: 'Argentina', codigo: 'ar', conf: 'CONMEBOL', titulos: [1978, 1986, 2022] },
+            { nome: 'Brasil', codigo: 'br', conf: 'CONMEBOL', titulos: [1958, 1962, 1970, 1994, 2002] },
+            { nome: 'Colômbia', codigo: 'co', conf: 'CONMEBOL', melhor: 'Quartos de final (2014)' },
+            { nome: 'Equador', codigo: 'ec', conf: 'CONMEBOL', melhor: 'Oitavos de final (2006)' },
+            { nome: 'Paraguai', codigo: 'py', conf: 'CONMEBOL', melhor: 'Quartos de final (2010)' },
+            { nome: 'Uruguai', codigo: 'uy', conf: 'CONMEBOL', titulos: [1930, 1950] },
+            // CONCACAF
+            { nome: 'Canadá', codigo: 'ca', conf: 'CONCACAF', anfitriao: true, melhor: 'Fase de grupos' },
+            { nome: 'Curaçau', codigo: 'cw', conf: 'CONCACAF', estreia: true },
+            { nome: 'Estados Unidos', codigo: 'us', conf: 'CONCACAF', anfitriao: true, melhor: 'Meias-finais (1930)' },
+            { nome: 'Haiti', codigo: 'ht', conf: 'CONCACAF', melhor: 'Fase de grupos (1974)' },
+            { nome: 'México', codigo: 'mx', conf: 'CONCACAF', anfitriao: true, melhor: 'Quartos de final (1970, 1986)' },
+            { nome: 'Panamá', codigo: 'pa', conf: 'CONCACAF', melhor: 'Fase de grupos (2018)' },
+            // CAF
+            { nome: 'África do Sul', codigo: 'za', conf: 'CAF', melhor: 'Fase de grupos' },
+            { nome: 'Argélia', codigo: 'dz', conf: 'CAF', melhor: 'Oitavos de final (2014)' },
+            { nome: 'Cabo Verde', codigo: 'cv', conf: 'CAF', estreia: true },
+            { nome: 'Costa do Marfim', codigo: 'ci', conf: 'CAF', melhor: 'Fase de grupos' },
+            { nome: 'Egito', codigo: 'eg', conf: 'CAF', melhor: 'Fase de grupos' },
+            { nome: 'Gana', codigo: 'gh', conf: 'CAF', melhor: 'Quartos de final (2010)' },
+            { nome: 'Marrocos', codigo: 'ma', conf: 'CAF', melhor: '4.º lugar (2022)' },
+            { nome: 'RD Congo', codigo: 'cd', conf: 'CAF', melhor: 'Fase de grupos (1974, como Zaire)' },
+            { nome: 'Senegal', codigo: 'sn', conf: 'CAF', melhor: 'Quartos de final (2002)' },
+            { nome: 'Tunísia', codigo: 'tn', conf: 'CAF', melhor: 'Fase de grupos' },
+            // AFC
+            { nome: 'Arábia Saudita', codigo: 'sa', conf: 'AFC', melhor: 'Oitavos de final (1994)' },
+            { nome: 'Austrália', codigo: 'au', conf: 'AFC', melhor: 'Oitavos de final (2006, 2022)' },
+            { nome: 'Catar', codigo: 'qa', conf: 'AFC', melhor: 'Fase de grupos (2022)' },
+            { nome: 'Coreia do Sul', codigo: 'kr', conf: 'AFC', melhor: '4.º lugar (2002)' },
+            { nome: 'Irão', codigo: 'ir', conf: 'AFC', melhor: 'Fase de grupos' },
+            { nome: 'Iraque', codigo: 'iq', conf: 'AFC', melhor: 'Fase de grupos (1986)' },
+            { nome: 'Japão', codigo: 'jp', conf: 'AFC', melhor: 'Oitavos de final (2002, 2010, 2018, 2022)' },
+            { nome: 'Jordânia', codigo: 'jo', conf: 'AFC', estreia: true },
+            { nome: 'Usbequistão', codigo: 'uz', conf: 'AFC', estreia: true },
+            // OFC
+            { nome: 'Nova Zelândia', codigo: 'nz', conf: 'OFC', melhor: 'Fase de grupos' },
+        ];
+
+        // Resumo no cabeçalho
+        const campeoes = selecoes.filter(s => s.titulos).length;
+        const estreantes = selecoes.filter(s => s.estreia).length;
+        const resumo = [
+            ['Seleções', selecoes.length],
+            ['Campeãs do mundo', campeoes],
+            ['Estreantes', estreantes],
+            ['Europa (UEFA)', selecoes.filter(s => s.conf === 'UEFA').length],
+            ['África (CAF)', selecoes.filter(s => s.conf === 'CAF').length],
+            ['Ásia (AFC)', selecoes.filter(s => s.conf === 'AFC').length],
+        ];
+        document.getElementById('resumo').innerHTML = resumo.map(([label, valor]) => `
+            <div class="bg-ink/80 p-5">
+                <dt class="text-xs text-gray-400">${label}</dt>
+                <dd class="mt-1 font-display font-black text-3xl">${valor}</dd>
+            </div>
+        `).join('');
+
+        // Cartões
+        function cartao(s) {
+            let resultado;
+            if (s.titulos) {
+                resultado = `<p class="text-xs font-semibold uppercase tracking-widest text-gray-400">${s.titulos.length} ${s.titulos.length === 1 ? 'título' : 'títulos'}</p>
+                    <p class="mt-1 text-sm font-medium">${s.titulos.join(' · ')}</p>`;
+            } else if (s.estreia) {
+                resultado = `<p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Melhor resultado</p>
+                    <p class="mt-1 text-sm font-medium">Primeira participação</p>`;
+            } else {
+                resultado = `<p class="text-xs font-semibold uppercase tracking-widest text-gray-400">Melhor resultado</p>
+                    <p class="mt-1 text-sm font-medium">${s.melhor}</p>`;
+            }
+
+            const etiquetas = [
+                s.titulos ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Campeã</span>' : '',
+                s.anfitriao ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-ink text-white">Anfitriã</span>' : '',
+                s.estreia ? '<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-accent text-ink">Estreia</span>' : '',
+            ].join('');
+
+            return `
+                <li class="selecao rounded-2xl border border-gray-200 p-6 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/60 transition flex flex-col">
+                    <div class="flex items-start justify-between gap-3">
+                        <img src="https://flagcdn.com/w80/${s.codigo}.png" srcset="https://flagcdn.com/w160/${s.codigo}.png 2x"
+                             alt="Bandeira: ${s.nome}" loading="lazy"
+                             class="h-9 w-auto rounded shadow-sm ring-1 ring-black/5">
+                        <div class="flex flex-wrap justify-end gap-1">${etiquetas}</div>
+                    </div>
+                    <h3 class="mt-5 font-display font-extrabold text-xl tracking-tight">${s.nome}</h3>
+                    <p class="text-sm text-gray-500">${s.conf} · ${confederacoes[s.conf]}</p>
+                    <div class="mt-5 pt-4 border-t border-gray-100">${resultado}</div>
+                </li>
+            `;
+        }
+
+        const ordenadas = [...selecoes].sort((a, b) => a.nome.localeCompare(b.nome, 'pt'));
+        const lista = document.getElementById('lista-selecoes');
+        const pesquisa = document.getElementById('pesquisa');
+        const filtros = document.getElementById('filtros');
+        let filtroAtual = 'all';
+
+        const opcoes = [['all', 'Todas'], ...Object.keys(confederacoes).map(c => [c, c])];
+        filtros.innerHTML = opcoes.map(([valor, label]) =>
+            `<button class="filter-btn px-4 py-2 rounded-full text-sm font-medium border transition" data-filter="${valor}">${label}</button>`
+        ).join('');
+
+        const normalizar = t => t.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+
+        function render() {
+            const termo = normalizar(pesquisa.value.trim());
+            const visiveis = ordenadas.filter(s =>
+                (filtroAtual === 'all' || s.conf === filtroAtual) && normalizar(s.nome).includes(termo)
+            );
+            lista.innerHTML = visiveis.map(cartao).join('');
+            document.getElementById('contagem').textContent =
+                `${visiveis.length} ${visiveis.length === 1 ? 'seleção' : 'seleções'}`;
+            document.getElementById('sem-resultados').classList.toggle('hidden', visiveis.length > 0);
+
+            filtros.querySelectorAll('.filter-btn').forEach(b => {
+                const ativo = b.dataset.filter === filtroAtual;
+                b.setAttribute('aria-selected', ativo);
+                b.classList.toggle('bg-ink', ativo);
+                b.classList.toggle('text-white', ativo);
+                b.classList.toggle('border-ink', ativo);
+                b.classList.toggle('bg-white', !ativo);
+                b.classList.toggle('text-gray-700', !ativo);
+                b.classList.toggle('border-gray-200', !ativo);
+            });
+        }
+
+        filtros.addEventListener('click', e => {
+            const b = e.target.closest('.filter-btn');
+            if (!b) return;
+            filtroAtual = b.dataset.filter;
+            render();
+        });
+        pesquisa.addEventListener('input', render);
+        render();
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu-mobile');
+        menuBtn.addEventListener('click', () => {
+            const abrir = menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', !abrir);
+            menuBtn.setAttribute('aria-expanded', abrir);
+        });
+    </script>
+</body>
+</html>
