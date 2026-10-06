@@ -1,0 +1,26 @@
+name: CI with Docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Build Docker image
+        run: docker build -t mundial-2026 .
+
+      - name: Run container and check the site responds
+        run: |
+          docker run -d -p 8080:80 --name site mundial-2026
+          sleep 3
+          curl --fail http://localhost:8080/index.html
+          curl --fail http://localhost:8080/assets/styles.css
+
+      #- name: Run application or tests
+      #  run: docker run my-python-app python -m unittest discover -s src/tests
+
